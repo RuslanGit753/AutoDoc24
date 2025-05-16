@@ -173,3 +173,6 @@ zdoc24
 
 # PyPI configuration file
 .pypirc
+
+#Cookies
+*.pkl
