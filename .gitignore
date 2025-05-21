@@ -176,4 +176,5 @@ utils/config.py
 .pypirc
 
 #Cookies
+cookies/
 *.pkl

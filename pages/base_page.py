@@ -4,8 +4,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage:
-    def __init__(self, get_chrome):
-        self.driver = get_chrome
+    def __init__(self, driver):
+        self.driver = driver
         self.BASE_URL = Config.BASE_URL
 
     def open(self, BASE_URL):
