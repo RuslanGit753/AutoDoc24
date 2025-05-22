@@ -12,9 +12,8 @@ from pages.autho_page import AuthorizationPage
 def test_login_successful(driver, username, password, cookie_file):
     page = AuthorizationPage(driver)
     page.open_login_form(username, password)
+    assert page.check_account_url(), "URL не содержит '/applicant/account'"
 
     os.makedirs("cookies", exist_ok=True)
     with open(f"cookies/{cookie_file}", 'w') as file:
         json.dump(driver.get_cookies(), file, indent=2)
-
-    assert page.check_account_url(), "URL не содержит '/applicant/account'"
