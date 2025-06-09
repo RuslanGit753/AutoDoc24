@@ -1,5 +1,6 @@
 from pages.account_page import AccountPage
 from utils.config import Config
+import time
 
 
 def test_main_page(driver):
