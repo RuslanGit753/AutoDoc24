@@ -14,6 +14,10 @@ class BasePage:
     def find(self, locator, timeout=10):
         return WebDriverWait(self.driver, timeout).until(
             EC.visibility_of_element_located(locator))
+    
+    def find_elements(self, locator, timeout=10):  # Новый метод для поиска всех элементов
+        return WebDriverWait(self.driver, timeout).until(
+            EC.visibility_of_all_elements_located(locator))
 
     def wait_for_url(self, pattern: str, timeout=10) -> None:
         WebDriverWait(self.driver, timeout).until(
