@@ -11,7 +11,7 @@ class AuthorizationPage(BasePage):
         self.find(AuthPageLocators.password_field).send_keys(password)
         self.find(AuthPageLocators.submit_button).click()
 
-    def check_account_url(self):
+    def check_account_url_appl(self):
         self.find(AuthPageLocators.account).click()
         self.find(AuthPageLocators.account_link).click()
 
