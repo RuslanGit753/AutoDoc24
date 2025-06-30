@@ -3,7 +3,6 @@ from pages.base_page import BasePage
 from utils.locators import AddFavorites
 
 
-
 class FavoritesPage(BasePage):
     def add_fav_vacancies(self):
         self.open(Config.BASE_URL)
