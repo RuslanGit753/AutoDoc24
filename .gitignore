@@ -178,3 +178,4 @@ utils/config.py
 #Cookies
 cookies/
 *.pkl
+example/
