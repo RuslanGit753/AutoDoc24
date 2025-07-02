@@ -23,10 +23,10 @@ def test_login_successful(driver, username, password, cookie_file):
         assert page.check_account_url_appl(), "URL содержит '/applicant/account'"
 
     with allure.step("Добавление скриншота"):
-            screenshot = driver.get_screenshot_as_png()
-            allure.attach(screenshot, name='Личный кабинет', 
-                          attachment_type=allure.attachment_type.PNG)
-    
+        screenshot = driver.get_screenshot_as_png()
+        allure.attach(screenshot, name='Личный кабинет',
+                      attachment_type=allure.attachment_type.PNG)
+
     with allure.step("Сохранения кук авторизации"):
         os.makedirs("cookies", exist_ok=True)
         with open(f"cookies/{cookie_file}", 'w') as file:
