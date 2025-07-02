@@ -3,18 +3,18 @@ from selenium.webdriver.common.by import By
 
 class AuthPageLocators:
         """Локаторы страницы авторизации"""
-        auth_button = (By.XPATH, '//button[@class="Header_header__authorized__l3dJL"]')
+        auth_button = (By.XPATH,
+                       '//button[@class="Header_header__authorized__l3dJL"]')
         email_field = (By.XPATH, '//input[@type="email"]')
         password_field = (By.XPATH, '//input[@type="password"]')
         submit_button = (By.XPATH, '//button[@type="submit"]')
         account = (By.XPATH, '//button/img[@alt="Account"]')
-        account_link = (By.XPATH, '//a[@class="BurgerMenu_container__item__08KwW"][1]')
-
+        account_link = (By.XPATH,
+                        '//a[@class="BurgerMenu_container__item__08KwW"][1]')
 
 class PersonalAccount:
         """Локаторы из личного кабинета"""
         email_account = (By.CSS_SELECTOR, '#email')
-
 
 class AddResume:
         """Локаторы добавления резюме"""
@@ -47,7 +47,8 @@ class AddResume:
         first_name = (By.CSS_SELECTOR, '#first_name')
         last_name = (By.CSS_SELECTOR, '#last_name')
         sex_group_female = (By.CSS_SELECTOR, '#FEMALE')
-        sex_group_male = (By.CSS_SELECTOR, '[class*="radioWrapper"]:nth-of-type(2)')
+        sex_group_male = (By.CSS_SELECTOR, 
+                          '[class*="radioWrapper"]:nth-of-type(2)')
         birth_day = (By.XPATH, '//input[@placeholder="ДД"]')
         birth_month = (By.XPATH, '//input[@placeholder="ММ"]')
         birth_year = (By.XPATH, '//input[@placeholder="ГГГГ"]')
@@ -57,18 +58,22 @@ class AddResume:
         """
         Опыт работы
         """
-        chekbox_no_experience = nex_two_but = (By.CSS_SELECTOR, '#experience-0')
+        chekbox_no_experience = (By.CSS_SELECTOR, '#experience-0')
 
         # Начало
-        period_start_month = (By.XPATH, "(//*[contains(@class, 'FormSelect_select__KKcVF')])[1]")
+        period_start_month = (By.XPATH,
+                "(//*[contains(@class, 'FormSelect_select__KKcVF')])[1]")
         month_start = (By.XPATH, '//div[@id="5"]') # По умолчанию июнь
-        period_start_year = (By.XPATH, "(//*[contains(@class, 'FormSelect_select__KKcVF')])[2]")
+        period_start_year = (By.XPATH,
+                "(//*[contains(@class, 'FormSelect_select__KKcVF')])[2]")
         year_start = (By.XPATH, '//div[@id="5"]') # По умолчанию 2020
 
         # Конец
-        period_end_month = (By.XPATH, "(//*[contains(@class, 'FormSelect_select__KKcVF')])[3]")
+        period_end_month = (By.XPATH,
+                "(//*[contains(@class, 'FormSelect_select__KKcVF')])[3]")
         month_end = (By.XPATH, '//div[@id="8"]') # По умолчанию сентябрь
-        period_end_year = (By.XPATH, "(//*[contains(@class, 'FormSelect_select__KKcVF')])[4]")
+        period_end_year = (By.XPATH,
+                "(//*[contains(@class, 'FormSelect_select__KKcVF')])[4]")
         year_end = (By.XPATH, '//div[@id="0"]') # По умолчанию 2025
 
         company_name = (By.CSS_SELECTOR, '#company_name_0')
@@ -120,12 +125,16 @@ class AddResume:
         О себе
         """
         personal_info = (By.CSS_SELECTOR, '#about')
-        form_button_publish = (By.CSS_SELECTOR, '[class*="FormButton_publish"]') # Опубликовать 
-
+        form_button_publish = (By.CSS_SELECTOR, 
+                               '[class*="FormButton_publish"]') # Опубликовать 
 
 class AddFavorites:
         """Локаторы со страницы 'Избранное'"""
-        first_vacancies = (By.CSS_SELECTOR, '.EmployerCard_card__AY0Jq') # По умолчанию первая вакансия в списке
+        # По умолчанию первая вакансия в списке
+        first_vacancies = (By.CSS_SELECTOR,
+                           '.EmployerCard_card__AY0Jq') 
         add_fav = (By.CSS_SELECTOR, '[class*="like__fts2F"]')
         open_fav_page = (By.CSS_SELECTOR, '.Icons_fav__2LNv5')
-        count_fav_vacancies = (By.CSS_SELECTOR, '.EmployerCard_card__AY0Jq') # Отображает количество добавленных вакансий
+        # Отображает количество добавленных вакансий
+        count_fav_vacancies = (By.CSS_SELECTOR,
+                               '.EmployerCard_card__AY0Jq')
