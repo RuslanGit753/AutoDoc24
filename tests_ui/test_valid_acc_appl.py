@@ -1,5 +1,5 @@
 from utils.config import Config
-from pages.account_appl_page import AccountPage
+from pages_ui.account_appl_page import AccountPage
 
 
 def test_valid_email(driver):

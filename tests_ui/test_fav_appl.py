@@ -1,6 +1,6 @@
 import allure
 import pytest
-from pages.fav_appl_page import FavoritesPage
+from pages_ui.fav_appl_page import FavoritesPage
 
 
 @pytest.mark.smoke

@@ -3,7 +3,7 @@ import json
 import pytest
 import allure
 from utils.config import Config
-from pages.autho_page import AuthorizationPage
+from pages_ui.autho_page import AuthorizationPage
 
 
 @pytest.mark.smoke

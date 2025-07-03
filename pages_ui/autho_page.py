@@ -1,6 +1,6 @@
 import allure
 from utils.config import Config
-from pages.base_page import BasePage
+from pages_ui.base_page import BasePage
 from utils.locators import AuthPageLocators
 
 
