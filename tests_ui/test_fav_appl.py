@@ -1,6 +1,6 @@
 import allure
 import pytest
-from pages_ui.fav_appl_page import FavoritesPage
+from pages_ui.applicant_page import FavoritesPage
 
 
 @pytest.mark.smoke
@@ -15,6 +15,3 @@ def test_add_fav_vacancies(driver):
     with allure.step("Проверка вакансии в избранном, 1 вакансия"):
         fav_vac = page.add_fav_vacancies()
         assert len(fav_vac) == 1
-        screenshot = driver.get_screenshot_as_png()
-        allure.attach(screenshot, name='1 вкансия в избранном', 
-                      attachment_type=allure.attachment_type.PNG)

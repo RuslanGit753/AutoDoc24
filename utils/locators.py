@@ -3,18 +3,20 @@ from selenium.webdriver.common.by import By
 
 class AuthPageLocators:
         """Локаторы страницы авторизации"""
-        auth_button = (By.XPATH,
-                       '//button[@class="Header_header__authorized__l3dJL"]')
-        email_field = (By.XPATH, '//input[@type="email"]')
+        auth_button = (By.CSS_SELECTOR, '[class*="authorized"]')
+        email_field = (By.CSS_SELECTOR, '#email')
         password_field = (By.XPATH, '//input[@type="password"]')
         submit_button = (By.XPATH, '//button[@type="submit"]')
         account = (By.XPATH, '//button/img[@alt="Account"]')
         account_link = (By.XPATH,
                         '//a[@class="BurgerMenu_container__item__08KwW"][1]')
+        # Локатор сообщения об ошибке при неверных данных авторизации 
+        error_box = (By.CSS_SELECTOR, '[class*="ErrorBackendMessage"]')
 
 class PersonalAccount:
         """Локаторы из личного кабинета"""
         email_account = (By.CSS_SELECTOR, '#email')
+
 
 class AddResume:
         """Локаторы добавления резюме"""
@@ -128,6 +130,7 @@ class AddResume:
         form_button_publish = (By.CSS_SELECTOR, 
                                '[class*="FormButton_publish"]') # Опубликовать 
 
+
 class AddFavorites:
         """Локаторы со страницы 'Избранное'"""
         # По умолчанию первая вакансия в списке
@@ -138,3 +141,31 @@ class AddFavorites:
         # Отображает количество добавленных вакансий
         count_fav_vacancies = (By.CSS_SELECTOR,
                                '.EmployerCard_card__AY0Jq')
+
+
+class RegistrApplicant:
+        """Локаторы для регистрации соискателя"""
+        auth_button = (By.CSS_SELECTOR, '[class*="authorized"]')
+        regis_betton = (By.CSS_SELECTOR, '[class*="ModalLogIn_underline"]')
+        radio_job = (By.CSS_SELECTOR, '#mode-0')
+        next_button = (By.CSS_SELECTOR, '[class*="ModalSignUp_btn"]')
+        # Шаг первый
+        first_name = (By.CSS_SELECTOR, '#first_name')
+        last_name = (By.CSS_SELECTOR, '#last_name')
+        mail = (By.CSS_SELECTOR, '#email')
+        password = (By.XPATH, '//input[@type="password"]')
+        regis_betton2 = (By.XPATH, '//button[text()="Зарегистрироваться"]')
+        # Шаг второй
+        code = (By.CSS_SELECTOR, '[class*="FormOtp_number_input"]')
+        result_text = (By.CSS_SELECTOR, '[class*="FormOtp_number_input"]')
+
+
+class DeleteApplicant:
+        """Локаторы для удаления соискателя"""
+        del_button_acc = (By.CSS_SELECTOR,
+                               '[class*="deleteAccount"]')
+        pass_appl = (By.CSS_SELECTOR, "#currentPassword")
+        check_box = (By.XPATH, '//label[@for="confirmCheckbox-0"]')
+        button_confirm_del = (By.CSS_SELECTOR, 
+                              '[class*="modal_next_btn"]')
+        info_del_appl = (By.CSS_SELECTOR, '[class*="modal_title"]')
