@@ -5,45 +5,51 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage:
+    """Класс для работы с веб-страницей"""
     def __init__(self, driver):
         self.driver = driver
 
-    """Метод для открытия веб страницы"""
     def open(self, url):
+        """Метод для открытия веб страницы"""
         self.driver.get(url)
 
-    """Ожидание локатора элемента"""
     def find(self, locator, timeout=10):
+        """Ожидание локатора элемента"""
         return WebDriverWait(self.driver, timeout).until(
             EC.visibility_of_element_located(locator))
+    
+    def find_text(self, locator, text, timeout=10):
+        """Ожидание локатора элемента с текстом"""
+        return WebDriverWait(self.driver, timeout).until(
+            EC.text_to_be_present_in_element(locator, text))
 
-    """Ожидание пока элемент не станет кликабельным"""
     def find_elem_click(self, locator, timeout=10):
+        """Ожидание пока элемент не станет кликабельным"""
         return WebDriverWait(self.driver, timeout).until(
             EC.element_to_be_clickable(locator))
 
-    """Ожидание появления нескольких элементов"""
     def find_elements(self, locator, timeout=10):
+        """Ожидание появления нескольких элементов"""
         return WebDriverWait(self.driver, timeout).until(
             EC.visibility_of_all_elements_located(locator))
 
-    """Ожидание появления необходимого URL"""
     def wait_for_url(self, pattern: str, timeout=10) -> None:
+        """Ожидание появления необходимого URL"""
         WebDriverWait(self.driver, timeout).until(
             EC.url_contains(pattern))
 
-    """Прокрутка страницы до необходимого элемента"""
     def scrol_page(self, element):
+        """Прокрутка страницы до необходимого элемента"""
         self.driver.execute_script(
             "arguments[0].scrollIntoView({block: 'center', behavior: 'smooth'});",
             element)
 
-    """Очистка кук"""
     def clear_cookies(self):
+        """Очистка кук"""
         self.driver.delete_all_cookies()
 
-    """Загрузка кук на страницу"""
     def load_user_cookies(self, user_number):
+        """Загрузка кук на страницу"""
         cookies_file = os.path.join('cookies', f'user{user_number}.json')
         if os.path.exists(cookies_file):
             with open(cookies_file, 'r') as file:
