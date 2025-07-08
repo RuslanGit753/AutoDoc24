@@ -12,6 +12,12 @@ def test_add_fav_vacancies(driver):
     with allure.step("Инициализация драйвера"):
         page = FavoritesPage(driver)
 
+    with allure.step("Загрузка кук авторизации пользователя"):
+        page.load_cookies()
+
+    with allure.step("Добавить первую вакансию из списка в избранное"):
+        page.add_fav_vacancies()
+
     with allure.step("Проверка вакансии в избранном, 1 вакансия"):
-        fav_vac = page.add_fav_vacancies()
+        fav_vac = page. check_vacan_fav()
         assert len(fav_vac) == 1

@@ -15,13 +15,23 @@ class BasePage:
 
     def find(self, locator, timeout=10):
         """Ожидание локатора элемента"""
-        return WebDriverWait(self.driver, timeout).until(
-            EC.visibility_of_element_located(locator))
-    
+        from selenium.common.exceptions import TimeoutException
+        try:
+            return WebDriverWait(self.driver, timeout).until(
+                EC.visibility_of_element_located(locator))
+        except TimeoutException:
+            print(f"Элемент с локатором {locator} не найден"
+                  f"в течение {timeout} секунд")
+
     def find_text(self, locator, text, timeout=10):
         """Ожидание локатора элемента с текстом"""
-        return WebDriverWait(self.driver, timeout).until(
-            EC.text_to_be_present_in_element(locator, text))
+        from selenium.common.exceptions import TimeoutException
+        try:
+            return WebDriverWait(self.driver, timeout).until(
+                EC.text_to_be_present_in_element(locator, text))
+        except TimeoutException:
+            print(f"Текст из локатора {locator} не найден"
+                  f"в течение {timeout} секунд")
 
     def find_elem_click(self, locator, timeout=10):
         """Ожидание пока элемент не станет кликабельным"""
@@ -30,8 +40,13 @@ class BasePage:
 
     def find_elements(self, locator, timeout=10):
         """Ожидание появления нескольких элементов"""
-        return WebDriverWait(self.driver, timeout).until(
-            EC.visibility_of_all_elements_located(locator))
+        from selenium.common.exceptions import TimeoutException
+        try:
+            return WebDriverWait(self.driver, timeout).until(
+                EC.visibility_of_all_elements_located(locator))
+        except TimeoutException:
+            print(f"Элементы с локатором {locator} не найдены"
+                  f"в течение {timeout} секунд")
 
     def wait_for_url(self, pattern: str, timeout=10) -> None:
         """Ожидание появления необходимого URL"""
@@ -41,8 +56,8 @@ class BasePage:
     def scrol_page(self, element):
         """Прокрутка страницы до необходимого элемента"""
         self.driver.execute_script(
-            "arguments[0].scrollIntoView({block: 'center', behavior: 'smooth'});",
-            element)
+            "arguments[0].scrollIntoView({block: 'center',"
+            "behavior: 'smooth'});", element)
 
     def clear_cookies(self):
         """Очистка кук"""

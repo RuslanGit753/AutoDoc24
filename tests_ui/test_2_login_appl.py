@@ -20,7 +20,11 @@ def test_login_successful(driver, username, password, cookie_file):
         page = AuthorizationPage(driver)
 
     with allure.step("Ввод логина и пароля"):
-        account = page.open_login_form(username, password)
+        page.open_login_form(username, password)
+
+    with allure.step("Открытие личного кабинета"
+                     "и извлечение почты соискателя"):
+        account = page.open_acc_appl()
 
     with allure.step("Проверка почты пользователя"):
         assert account == Config.my_appl_mail_1

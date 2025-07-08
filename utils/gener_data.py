@@ -33,13 +33,13 @@ class ApplTestData:
         return fake.password(length=10, upper_case=upper_case)
 
     @staticmethod
-    def gen_spec_chars():
-        """Генерация пароля без спецсимволов"""
+    def gen_non_spec_chars():
+        """Генерация пароля с латиницей и числами без символов"""
         return fake.password(length=10, special_chars=False)
 
     @staticmethod
     def gen_non_num():
-        """Генерация пароля без цифр"""
+        """Генерация пароля с латиницей и символами без цифр"""
         return fake.password(length=10, digits=False)
 
     @staticmethod
