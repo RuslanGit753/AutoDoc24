@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 
-class AuthPageLocators:
+class AuthPageLoc:
         """Локаторы страницы авторизации"""
         auth_button = (By.CSS_SELECTOR, '[class*="authorized"]')
         email_field = (By.CSS_SELECTOR, '#email')
@@ -13,12 +13,16 @@ class AuthPageLocators:
         # Локатор сообщения об ошибке при неверных данных авторизации 
         error_box = (By.CSS_SELECTOR, '[class*="ErrorBackendMessage"]')
 
-class PersonalAccount:
+class PersAccLoc:
         """Локаторы из личного кабинета"""
         email_account = (By.CSS_SELECTOR, '#email')
+        first_name = (By.CSS_SELECTOR, '#first_name')
+        last_name = (By.CSS_SELECTOR, '#last_name')
+        phone = (By.CSS_SELECTOR, '#phone')
+        submit_save = (By.XPATH, '//button[text()="Сохранить"]')
 
 
-class AddResume:
+class AddResLoc:
         """Локаторы добавления резюме"""
         but_add_resume = (By.CSS_SELECTOR, '.HeaderButton_btn__phhYC')
         but_cooki = (By.CSS_SELECTOR, '[class*="CookieNotice_button"]')
@@ -131,7 +135,7 @@ class AddResume:
                                '[class*="FormButton_publish"]') # Опубликовать 
 
 
-class AddFavorites:
+class AddFavLoc:
         """Локаторы со страницы 'Избранное'"""
         # По умолчанию первая вакансия в списке
         first_vacancies = (By.CSS_SELECTOR,
@@ -143,11 +147,11 @@ class AddFavorites:
                                '.EmployerCard_card__AY0Jq')
 
 
-class RegistrApplicant:
+class RegistAppltLoc:
         """Локаторы для регистрации соискателя"""
         auth_button = (By.CSS_SELECTOR, '[class*="authorized"]')
         regis_betton = (By.CSS_SELECTOR, '[class*="ModalLogIn_underline"]')
-        radio_job = (By.CSS_SELECTOR, '#mode-0')
+        radio_job = (By.XPATH, '//label[text()="Я ищу работу"]')
         next_button = (By.CSS_SELECTOR, '[class*="ModalSignUp_btn"]')
         # Шаг первый
         first_name = (By.CSS_SELECTOR, '#first_name')
@@ -157,10 +161,10 @@ class RegistrApplicant:
         regis_betton2 = (By.XPATH, '//button[text()="Зарегистрироваться"]')
         # Шаг второй
         code = (By.CSS_SELECTOR, '[class*="FormOtp_number_input"]')
-        result_text = (By.CSS_SELECTOR, '[class*="FormOtp_number_input"]')
+        result_text = (By.CSS_SELECTOR, '[class*="ModalSignUp_modal_title"]')
 
 
-class DeleteApplicant:
+class DelApplLoc:
         """Локаторы для удаления соискателя"""
         del_button_acc = (By.CSS_SELECTOR,
                                '[class*="deleteAccount"]')
@@ -169,3 +173,15 @@ class DeleteApplicant:
         button_confirm_del = (By.CSS_SELECTOR, 
                               '[class*="modal_next_btn"]')
         info_del_appl = (By.CSS_SELECTOR, '[class*="modal_title"]')
+
+
+class ResVacLoc:
+        """Локаторы для отклика на вакансию"""
+        list_vac = (By.XPATH, '//div[@class="EmployerCard_card__AY0Jq "][1]')
+        title_posit = (By.CSS_SELECTOR, '[class*="title__position"]')
+        respond_button1 = ((By.XPATH, '//button[text()="Откликнуться"]'))
+        respond_button2 = (By.CSS_SELECTOR, 
+                           '[class*="modal_buttons" ] button:last-child')
+        open_chat = (By.XPATH, '//button[text()="Перейти в чат"]')
+        open_vac_chat = (By.CSS_SELECTOR, '[class*="ChatCard_chat__3Jbao"]')
+        title_posit_chat = (By.CSS_SELECTOR, '[class*="UserStatus_vacName"]')

@@ -1,8 +1,6 @@
 import os
 import requests
 from faker import Faker
-from body_api.user_id import user_id_1
-from body_api.token_appl import autho_bearer_1
 
 
 fake = Faker()
@@ -53,16 +51,12 @@ class LoginAppApplicantApi:
         }
         body = requests.post(url, data=data)
 
-        # Убедимся, что директория существует
-        if not os.path.exists('body_api'):
-            os.makedirs('body_api')
-
         # Извлекаем значение access из тела ответа
         autho_bearer = body.json().get("access")
 
         # Сохраняем токен в файл token_appl
-        with open(os.path.join('body_api', 'token_appl.py'), 'w') as file:
-            file.write(f"autho_bearer_1 = '{autho_bearer}'")
+        with open(os.path.join('utils', 'token_appl_1_api.py'), 'w') as file:
+            file.write(f"bearer_appl_1 = '{autho_bearer}'")
         return body
 
     def login_appl(self, email_user1, password_user1):
@@ -76,12 +70,12 @@ class LoginAppApplicantApi:
         body = requests.post(url, data=data)
         return body
 
-    def get_account_appl_api(self):
+    def get_account_appl_api(self, bearer_appl_1, user_id_appl):
         """Получить персональные данные соискателя"""
         headers = {
-            "Authorization": f"Bearer {autho_bearer_1}"
+            "Authorization": f"Bearer {bearer_appl_1}"
         }
-        url = f"{self.url}/applicant/{user_id_1}"
+        url = f"{self.url}/applicant/{user_id_appl}"
         response = requests.get(url, headers=headers)
         return response
 
@@ -91,17 +85,18 @@ class DeleteApplicantApi:
     def __init__(self, url):
         self.url = url
 
-    def delete_account_appl_api(self, password_user2):
+    def delete_account_appl_api(self, password_user1, 
+                                bearer_appl_1, user_id_appl):
         """Удаление аккаунта соискателя"""
         headers = {
-            "Authorization": f"Bearer {autho_bearer_1}"
+            "Authorization": f"Bearer {bearer_appl_1}"
         }
         # Тело запроса
         data = {
-            "password": password_user2,
+            "password": password_user1,
             "is_confirm": True
         }
-        url = f"{self.url}/applicant/{user_id_1}/delete/"
+        url = f"{self.url}/applicant/{user_id_appl}/delete/"
         body = requests.delete(url, data=data, headers=headers)
         return body
 
@@ -111,15 +106,35 @@ class VacancyApi:
     def __init__(self, url):
         self.url = url
 
-    def get_vacancy_appl_api(self):
+    def get_vacancy_appl_api(self, bearer_appl_1):
         """Поучить список вакансий"""
         headers = {
-            "Authorization": f"Bearer {autho_bearer_1}"
+            "Authorization": f"Bearer {bearer_appl_1}"
         }
         url = f"{self.url}//vacancies/applicant/"
         body = requests.get(url, headers=headers)
         return body
 
 
-class CreateResume:
-    """Класс создания резюме"""
+class EditingApplAccAppi:
+    """Класс редактирования личного кабинета. 
+    Можно отредактировать: имя, фамилию, номер телефона"""
+    def __init__(self, url):
+        self.url = url
+
+    def add_phone_appl_api(self, email, phone, first_name, last_name, 
+                           bearer_appl_1, user_id_appl):
+        """Добавить или изменить номер телефона"""
+        headers = {
+                "Authorization": f"Bearer {bearer_appl_1}"
+            }
+        # Тело запроса
+        data = {
+            "email": email,
+            "phone": phone,
+            "first_name": first_name,
+            "last_name": last_name
+        }
+        url = f"{self.url}/applicant/{user_id_appl}/"
+        body = requests.patch(url, data=data, headers=headers)
+        return body

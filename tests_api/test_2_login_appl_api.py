@@ -1,30 +1,33 @@
 import pytest
 import allure
-from utils.config import Config
+from utils.config import ConfigAppl
+from utils.decod_token import decod_token_appl
 from pages_api.appl_page_api import LoginAppApplicantApi
 
 
-api = LoginAppApplicantApi(Config.BASE_URL_API)
-email_user1 = Config.my_appl_name_1
-password_user1 = Config.my_appl_pas_1
+api = LoginAppApplicantApi(ConfigAppl.BASE_URL_API)
+email_user1 = ConfigAppl.my_appl_mail_1
+password_user1 = ConfigAppl.my_appl_pas_1
 
 
 @allure.feature("Тестирование API соискателя")
 @allure.severity(allure.severity_level.BLOCKER)
 @allure.title("Тест на авторизацию")
 @allure.description(
-    "Проверка успешной авторизации и сохранения токена")
+    "Проверка успешной авторизации и сохранения токена."
+    "Извлечение user_id из токена авторизации")
 @pytest.mark.api
 @pytest.mark.smoke
 def test_login_save_cookies_appl():
     with allure.step("Отправка POST-запроса к /login/"):
         response = api.login_save_cookies_appl(
             email_user1, password_user1)
+        
+    with allure.step("Извлекаем user_id из токена"):
+        decod_token_appl()
 
     with allure.step("Проверка статус кода == 200"):
         assert response.status_code == 200
-    allure.attach(response.text,
-                  'Response Body', allure.attachment_type.TEXT)
 
 
 @allure.feature("Тестирование API соискателя")
@@ -51,8 +54,6 @@ def test_mail_appl_neg(email, password):
 
     with allure.step("Проверка статус кода == 400 или 401"):
         assert response.status_code == 400 or 401
-    allure.attach(response.text,
-                  'Response Body', allure.attachment_type.TEXT)
 
 
 @allure.feature("Тестирование API соискателя")
@@ -77,5 +78,3 @@ def test_password_appl_neg(email, password):
 
     with allure.step("Проверка статус кода == 400 или 401"):
         assert response.status_code == 400 or 401
-        allure.attach(response.text,
-                      'Response Body', allure.attachment_type.TEXT)

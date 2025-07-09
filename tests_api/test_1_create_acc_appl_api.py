@@ -1,15 +1,15 @@
 import pytest
 import allure
-from utils.config import Config
+from utils.config import ConfigAppl
 from utils.gener_data import ApplTestData
 from pages_api.appl_page_api import CreateApplicantApi
 
 
-api = CreateApplicantApi(Config.BASE_URL_API)
-first_name = Config.appl_first_name_1
-last_name = Config.appl_last_name_1
-email_user1 = Config.my_appl_mail_1
-password_user1 = Config.my_appl_pas_1
+api = CreateApplicantApi(ConfigAppl.BASE_URL_API)
+first_name = ConfigAppl.appl_first_name_1
+last_name = ConfigAppl.appl_last_name_1
+email_user1 = ConfigAppl.my_appl_mail_1
+password_user1 = ConfigAppl.my_appl_pas_1
 
 
 @allure.feature("Тестирование API соискателя")
@@ -19,7 +19,7 @@ password_user1 = Config.my_appl_pas_1
 @pytest.mark.api
 @pytest.mark.smoke
 def test_create_account_appl():
-    with allure.step(f"Создание аккаунта соискателя"):
+    with allure.step("Создание аккаунта соискателя"):
         response = api.create_account_appl(first_name, last_name,
                                            email_user1, password_user1)
     with allure.step("Проверка статус кода для регистрации == 201"):
@@ -61,7 +61,8 @@ def test_verific_account_appl():
 ])
 def test_first_name_pos(first_name, last_name, email, password):
     with allure.step("Создание аккаунта соискателя"):
-        response = api.create_account_appl(first_name, last_name, email, password)
+        response = api.create_account_appl(first_name, last_name,
+                                           email, password)
 
     with allure.step("Проверка статус кода для регистрации == 201"):
         assert response.status_code == 201
@@ -83,7 +84,8 @@ def test_first_name_pos(first_name, last_name, email, password):
 ])
 def test_first_name_neg(first_name, last_name, email, password):
     with allure.step("Создание аккаунта соискателя"):
-        response = api.create_account_appl(first_name, last_name, email, password)
+        response = api.create_account_appl(first_name, last_name,
+                                           email, password)
 
     with allure.step("Проверка статус кода для регистрации == 400"):
         assert response.status_code == 400
@@ -107,7 +109,8 @@ def test_first_name_neg(first_name, last_name, email, password):
 ])
 def test_last_name_pos(first_name, last_name, email, password):
     with allure.step("Создание аккаунта соискателя"):
-        response = api.create_account_appl(first_name, last_name, email, password)
+        response = api.create_account_appl(first_name, last_name,
+                                           email, password)
 
     with allure.step("Проверка статус кода для регистрации == 201"):
         assert response.status_code == 201
@@ -129,7 +132,8 @@ def test_last_name_pos(first_name, last_name, email, password):
 ])
 def test_last_name_neg(first_name, last_name, email, password):
     with allure.step("Создание аккаунта соискателя"):
-        response = api.create_account_appl(first_name, last_name, email, password)
+        response = api.create_account_appl(first_name, last_name,
+                                           email, password)
 
     with allure.step("Проверка статус кода для регистрации == 400"):
         assert response.status_code == 400
@@ -151,11 +155,13 @@ def test_last_name_neg(first_name, last_name, email, password):
     ("Антон", "Петров", ApplTestData.gen_email() + "-", "Enter1_753"),
     ("Антон", "Петров", ApplTestData.gen_email() + "--", "Enter1_753"),
     ("Антон", "Петров", ApplTestData.gen_letter() + "@b.cd", "Enter1_753"),
-    ("Антон", "Петров", ApplTestData.gen_letter() * 243 + "@domein.com", "Enter1_753")
+    ("Антон", "Петров", ApplTestData.gen_letter() * 243 + "@domein.com",
+     "Enter1_753")
 ])
-def test_last_name_pos(first_name, last_name, email, password):
+def test_mail_pos(first_name, last_name, email, password):
     with allure.step("Создание аккаунта соискателя"):
-        response = api.create_account_appl(first_name, last_name, email, password)
+        response = api.create_account_appl(first_name, last_name,
+                                           email, password)
 
     with allure.step("Проверка статус кода для регистрации == 201"):
         assert response.status_code == 201
@@ -177,11 +183,13 @@ def test_last_name_pos(first_name, last_name, email, password):
     ("Антон", "Петров", ApplTestData.gen_email() + "-", "Enter1_753"),
     ("Антон", "Петров", ApplTestData.gen_email() + "--", "Enter1_753"),
     ("Антон", "Петров", ApplTestData.gen_letter() + "@b.c", "Enter1_753"),
-    ("Антон", "Петров", ApplTestData.gen_letter() * 244 + "@domein.com", "Enter1_753")
+    ("Антон", "Петров", ApplTestData.gen_letter() * 244 + "@domein.com",
+     "Enter1_753")
 ])
-def test_last_name_pos(first_name, last_name, email, password):
+def test_mail_neg(first_name, last_name, email, password):
     with allure.step("Создание аккаунта соискателя"):
-        response = api.create_account_appl(first_name, last_name, email, password)
+        response = api.create_account_appl(first_name, last_name,
+                                           email, password)
 
     with allure.step("Проверка статус кода для регистрации == 400"):
         assert response.status_code == 400
@@ -194,13 +202,21 @@ def test_last_name_pos(first_name, last_name, email, password):
 @pytest.mark.api
 @pytest.mark.positive_test
 @pytest.mark.parametrize("first_name, last_name, email, password", [
-    ("Антон", "Петров", ApplTestData.gen_email(), ApplTestData.gen_pas(length=8)),
-    ("Антон", "Петров", ApplTestData.gen_email(), ApplTestData.gen_pas(length=50)),
-    ("Антон", "Петров", ApplTestData.gen_email(), ApplTestData.gen_registr(upper_case=False))
+    ("Антон", "Петров", ApplTestData.gen_email(),
+     ApplTestData.gen_pas(length=8)),
+    ("Антон", "Петров", ApplTestData.gen_email(),
+     ApplTestData.gen_pas(length=50)),
+    ("Антон", "Петров", ApplTestData.gen_email(),
+     ApplTestData.gen_registr(upper_case=False)),
+    ("Антон", "Петров", ApplTestData.gen_email(),
+     ApplTestData.gen_non_num()),
+    ("Антон", "Петров", ApplTestData.gen_email(),
+     ApplTestData.gen_non_spec_chars())
 ])
-def test_last_name_pos(first_name, last_name, email, password):
+def test_password_pos(first_name, last_name, email, password):
     with allure.step("Создание аккаунта соискателя"):
-        response = api.create_account_appl(first_name, last_name, email, password)
+        response = api.create_account_appl(first_name, last_name,
+                                           email, password)
 
     with allure.step("Проверка статус кода для регистрации == 201"):
         assert response.status_code == 201
@@ -213,18 +229,21 @@ def test_last_name_pos(first_name, last_name, email, password):
 @pytest.mark.api
 @pytest.mark.negative_test
 @pytest.mark.parametrize("first_name, last_name, email, password", [
-    ("Антон", "Петров", ApplTestData.gen_email(),  ApplTestData.gen_pas(length=7)),
-    ("Антон", "Петров", ApplTestData.gen_email(), ApplTestData.gen_pas(length=51)),
-    ("Антон", "Петров", ApplTestData.gen_email(), " " + ApplTestData.gen_registr()),
-    ("Антон", "Петров", ApplTestData.gen_email(), ApplTestData.gen_spec_chars()),
-    ("Антон", "Петров", ApplTestData.gen_email(), ApplTestData.gen_non_num()),
-    ("Антон", "Петров", ApplTestData.gen_email(), ApplTestData.gen_num(digits=10)),
+    ("Антон", "Петров", ApplTestData.gen_email(),
+     ApplTestData.gen_pas(length=7)),
+    ("Антон", "Петров", ApplTestData.gen_email(),
+     ApplTestData.gen_pas(length=51)),
+    ("Антон", "Петров", ApplTestData.gen_email(),
+     " " + ApplTestData.gen_registr()),
+    ("Антон", "Петров", ApplTestData.gen_email(),
+     ApplTestData.gen_num(digits=10)),
     ("Антон", "Петров", ApplTestData.gen_email(), "ОЛРрорупр"),
     ("Антон", "Петров", ApplTestData.gen_email(), "%;::?%?;№()")
 ])
-def test_last_name_pos(first_name, last_name, email, password):
+def test_password_neg(first_name, last_name, email, password):
     with allure.step("Создание аккаунта соискателя"):
-        response = api.create_account_appl(first_name, last_name, email, password)
+        response = api.create_account_appl(first_name, last_name,
+                                           email, password)
 
     with allure.step("Проверка статус кода для регистрации == 400"):
         assert response.status_code == 400

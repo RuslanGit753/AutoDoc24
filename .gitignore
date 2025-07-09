@@ -161,6 +161,8 @@ dmypy.json
 cython_debug/
 zdoc24
 utils/config.py
+utils/token_appl_1_api.py
+utils/user_id_appl_api.py
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
