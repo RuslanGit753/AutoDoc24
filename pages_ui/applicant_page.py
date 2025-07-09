@@ -1,15 +1,16 @@
-from utils.config import Config
+from utils.config import ConfigAppl
 from pages_ui.base_page import BasePage
 from utils.locators import (AuthPageLoc, AddFavLoc,
                             PersAccLoc, DelApplLoc, RegistAppltLoc,
                             ResVacLoc)
+from utils.gener_data import ApplTestData
 
 
 class RegistrApplPage(BasePage):
     """Класс регистрации соискателя"""
     def open_form_regist_appl(self):
         """Открытие формы регистрации соискателя"""
-        self.open(Config.BASE_URL)
+        self.open(ConfigAppl.BASE_URL)
         self.find(RegistAppltLoc.auth_button).click()
         self.find(RegistAppltLoc.regis_betton).click()
         self.find(RegistAppltLoc.radio_job).click()
@@ -34,7 +35,7 @@ class AuthorizationPage(BasePage):
     """Класс авторизации пользователя"""
     def open_login_form(self, email, password):
         """Заполнение формы авторизации: почта и пароль"""
-        self.open(Config.BASE_URL)
+        self.open(ConfigAppl.BASE_URL)
         self.find(AuthPageLoc.auth_button).click()
         self.find(AuthPageLoc.email_field).send_keys(email)
         self.find(AuthPageLoc.password_field).send_keys(password)
@@ -53,7 +54,7 @@ class FavoritesPage(BasePage):
     """Класс для добавления вакансий в избранное"""
     def load_cookies(self):
         """Загрузка кук авторизации пользователя"""
-        self.open(Config.BASE_URL)
+        self.open(ConfigAppl.BASE_URL)
         self.clear_cookies()
         self.load_user_cookies(1)
         self.driver.refresh()
@@ -74,15 +75,16 @@ class DeleteApplPage(BasePage):
     """Класс для удаления аккаунта"""
     def load_cook_user(self) -> bool:
         """Загрузка кук авторизации пользователя"""
-        self.open(Config.BASE_URL)
+        self.open(ConfigAppl.BASE_URL)
         self.clear_cookies()
         self.load_user_cookies(1)
+        self.driver.refresh()
 
-    def dell_acc_appl(self):
+    def dell_acc_appl(self, password):
         """Удаление аккаунта соискателя"""
-        self.open(Config.account_url)
+        self.open(ConfigAppl.acc_appl_url)
         self.find(DelApplLoc.del_button_acc).click()
-        self.find(DelApplLoc.pass_appl).send_keys(Config.my_appl_pas_1)
+        self.find(DelApplLoc.pass_appl).send_keys(password)
         self.find(DelApplLoc.check_box).click()
         self.find(DelApplLoc.button_confirm_del).click()
         info_result = self.find_text(DelApplLoc.info_del_appl,
@@ -94,7 +96,7 @@ class ResVacPage(BasePage):
     """Класс для отклика на вакансию"""
     def load_cookies(self):
         """Загрузка кук авторизации пользователя"""
-        self.open(Config.BASE_URL)
+        self.open(ConfigAppl.BASE_URL)
         self.clear_cookies()
         self.load_user_cookies(1)
         self.driver.refresh()
@@ -113,3 +115,55 @@ class ResVacPage(BasePage):
         self.find(ResVacLoc.open_vac_chat).click()
         title_posit_chat = self.find(ResVacLoc.title_posit_chat).text
         return title_posit_chat
+
+
+class AddInfoApplPage(BasePage):
+    """Класс добавления информации соискателя"""
+    def load_cookies(self):
+        """Загрузка кук авторизации пользователя"""
+        self.open(ConfigAppl.BASE_URL)
+        self.clear_cookies()
+        self.load_user_cookies(1)
+        self.driver.refresh()
+
+    def add_phone(self, appl_phone):
+        """Добавление номера телефона в личном кабинете"""
+        self.open(ConfigAppl.acc_appl_url)
+        self.find(PersAccLoc.phone).send_keys(appl_phone)
+        self.find(PersAccLoc.submit_save).click()
+        self.driver.refresh()
+
+    def save_add_phone(self):
+        """Сохранение добавленного номера"""
+        save_phone = self.find(
+            PersAccLoc.phone).get_attribute('value')
+        return save_phone
+
+
+class UpdInfoApplPage(BasePage):
+    """Класс обновления информации соискателя"""
+    def load_cookies(self):
+        """Загрузка кук авторизации пользователя"""
+        self.open(ConfigAppl.BASE_URL)
+        self.clear_cookies()
+        self.load_user_cookies(1)
+        self.driver.refresh()
+
+    def get_old_phone(self):
+        """Проверка наличия номера в поле"""
+        self.open(ConfigAppl.acc_appl_url)
+        old_phone = self.find(
+            PersAccLoc.phone).get_attribute('value')
+        return old_phone
+
+    def add_new_phone(self, new_phone):
+        """Заменить старый номер на новый"""
+        self.find(PersAccLoc.phone).send_keys(new_phone)
+        self.find(PersAccLoc.submit_save).click()
+        self.driver.refresh()
+
+    def save_new_phone(self):
+        """Записать длбавленный номер в переменную"""
+        new_phone = self.find(
+            PersAccLoc.phone).get_attribute('value')
+        return new_phone

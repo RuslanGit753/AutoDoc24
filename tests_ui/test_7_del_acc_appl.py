@@ -1,11 +1,7 @@
 import pytest
 import allure
-from utils.config import Config
+from utils.config import ConfigAppl
 from pages_ui.applicant_page import DeleteApplPage
-
-
-email = Config.my_appl_mail_1
-password = Config.my_appl_pas_1
 
 
 @pytest.mark.smoke
@@ -20,7 +16,7 @@ def test_delete_acc_appl(driver):
         page.load_cook_user()
 
     with allure.step("Удаление аккаунта"):
-        result = page.dell_acc_appl()
+        result = page.dell_acc_appl(ConfigAppl.my_appl_pas_1)
 
     with allure.step("Проверка появления сообщения:"
                      "'Ваш аккаунт удалён'"):

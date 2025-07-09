@@ -16,6 +16,10 @@ class AuthPageLoc:
 class PersAccLoc:
         """Локаторы из личного кабинета"""
         email_account = (By.CSS_SELECTOR, '#email')
+        first_name = (By.CSS_SELECTOR, '#first_name')
+        last_name = (By.CSS_SELECTOR, '#last_name')
+        phone = (By.CSS_SELECTOR, '#phone')
+        submit_save = (By.XPATH, '//button[text()="Сохранить"]')
 
 
 class AddResLoc:
@@ -176,7 +180,8 @@ class ResVacLoc:
         list_vac = (By.XPATH, '//div[@class="EmployerCard_card__AY0Jq "][1]')
         title_posit = (By.CSS_SELECTOR, '[class*="title__position"]')
         respond_button1 = ((By.XPATH, '//button[text()="Откликнуться"]'))
-        respond_button2 = (By.CSS_SELECTOR, '[class*="modal_buttons" ] button:last-child')
+        respond_button2 = (By.CSS_SELECTOR, 
+                           '[class*="modal_buttons" ] button:last-child')
         open_chat = (By.XPATH, '//button[text()="Перейти в чат"]')
         open_vac_chat = (By.CSS_SELECTOR, '[class*="ChatCard_chat__3Jbao"]')
         title_posit_chat = (By.CSS_SELECTOR, '[class*="UserStatus_vacName"]')

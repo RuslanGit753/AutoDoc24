@@ -1,15 +1,15 @@
 import pytest
 import allure
-from utils.config import Config
+from utils.config import ConfigAppl
 from utils.gener_data import ApplTestData
 from pages_api.appl_page_api import CreateApplicantApi
 
 
-api = CreateApplicantApi(Config.BASE_URL_API)
-first_name = Config.appl_first_name_1
-last_name = Config.appl_last_name_1
-email_user1 = Config.my_appl_mail_1
-password_user1 = Config.my_appl_pas_1
+api = CreateApplicantApi(ConfigAppl.BASE_URL_API)
+first_name = ConfigAppl.appl_first_name_1
+last_name = ConfigAppl.appl_last_name_1
+email_user1 = ConfigAppl.my_appl_mail_1
+password_user1 = ConfigAppl.my_appl_pas_1
 
 
 @allure.feature("Тестирование API соискателя")

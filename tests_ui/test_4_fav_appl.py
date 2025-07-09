@@ -15,7 +15,7 @@ def test_add_fav_vacancies(driver):
     with allure.step("Загрузка кук авторизации пользователя"):
         page.load_cookies()
 
-    with allure.step("Добавить первую вакансию из списка в избранное"):
+    with allure.step("Добавление первой вакансии из списка в избранное"):
         page.add_fav_vacancies()
 
     with allure.step("Проверка вакансии в избранном, 1 вакансия"):

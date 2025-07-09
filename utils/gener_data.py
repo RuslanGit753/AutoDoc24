@@ -7,6 +7,7 @@ class ApplTestData:
 
     # Номер телефона 
     tel_num = "+7 (356) 896 45 32"
+    upd_tel_num = "+7 (874) 421 76 12"
 
     @staticmethod
     def gen_email():

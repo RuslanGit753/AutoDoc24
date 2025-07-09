@@ -20,7 +20,7 @@ class BasePage:
             return WebDriverWait(self.driver, timeout).until(
                 EC.visibility_of_element_located(locator))
         except TimeoutException:
-            print(f"Элемент с локатором {locator} не найден"
+            print(f"Элемент с локатором {locator} не найден "
                   f"в течение {timeout} секунд")
 
     def find_text(self, locator, text, timeout=10):
@@ -30,7 +30,7 @@ class BasePage:
             return WebDriverWait(self.driver, timeout).until(
                 EC.text_to_be_present_in_element(locator, text))
         except TimeoutException:
-            print(f"Текст из локатора {locator} не найден"
+            print(f"Текст из локатора {locator} не найден "
                   f"в течение {timeout} секунд")
 
     def find_elem_click(self, locator, timeout=10):
@@ -45,7 +45,7 @@ class BasePage:
             return WebDriverWait(self.driver, timeout).until(
                 EC.visibility_of_all_elements_located(locator))
         except TimeoutException:
-            print(f"Элементы с локатором {locator} не найдены"
+            print(f"Элементы с локатором {locator} не найдены "
                   f"в течение {timeout} секунд")
 
     def wait_for_url(self, pattern: str, timeout=10) -> None:
