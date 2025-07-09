@@ -114,15 +114,15 @@ pytest -s
 ## 3 Дополнительные файлы окружения
 
 **AutoDoc24**
-│
+
 ├───**cookies** - создается автоматически после авторизации 
-│       *user1.json* 
-│
+- *user1.json* 
+
 ├───**utils**
-│      *config.py* - содержит в себе ссылки и данные для авторизации                  
-│      decod_token.py - содержит в себе функцию `decod_token_appl()` для декодирования токена 
-│      driver_setup.py - содержит функцию инициализации вебдрайвера `get_driver()`
-│      gener_data.py - содержит класс `ApplTestData` с методами для генерации тестовых данных
-│      locators.py - содержит класс `AuthPageLoc` с наборами локаторов
-│      *token_appl_1_api.py* - содержит пустую переменную `bearer_appl_1 = ''`
-│      *user_id_appl_api.py* - содержит пустую переменную `user_id_appl = ''`
+- *config.py* - содержит в себе ссылки и данные для авторизации                  
+- decod_token.py - содержит в себе функцию `decod_token_appl()` для декодирования токена 
+- driver_setup.py - содержит функцию инициализации вебдрайвера `get_driver()`
+- gener_data.py - содержит класс `ApplTestData` с методами для генерации тестовых данных
+- locators.py - содержит класс `AuthPageLoc` с наборами локаторов
+- *token_appl_1_api.py* - содержит пустую переменную `bearer_appl_1 = ''`
+- *user_id_appl_api.py* - содержит пустую переменную `user_id_appl = ''`
