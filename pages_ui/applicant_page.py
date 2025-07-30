@@ -1,9 +1,8 @@
 from utils.config import ConfigAppl
 from pages_ui.base_page import BasePage
 from utils.locators import (AuthPageLoc, AddFavLoc,
-                            PersAccLoc, DelApplLoc, RegistAppltLoc,
-                            ResVacLoc)
-from utils.gener_data import ApplTestData
+                            PersAccLoc, DelApplLoc, 
+                            RegistAppltLoc, ResVacLoc)
 
 
 class RegistrApplPage(BasePage):
